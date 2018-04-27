@@ -32,7 +32,7 @@ namespace BeFaster.App.Solutions
             if (isFizz && isBuzz)
             {
                 result = "fizz buzz";
-                if (isFizzDeluxe && isBuzzDeluxe)
+                if (isFizzDeluxe || isBuzzDeluxe)
                 {
                     result += " " + (number % 2 == 0 ? "deluxe" : "fake deluxe");
                 }
