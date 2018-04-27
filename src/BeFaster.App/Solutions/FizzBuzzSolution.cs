@@ -1,4 +1,5 @@
 ﻿using BeFaster.Runner.Exceptions;
+using System.Linq;
 
 namespace BeFaster.App.Solutions
 {
@@ -14,6 +15,11 @@ namespace BeFaster.App.Solutions
             return number % 5 == 0 || number.ToString().Contains("5");
         }
 
+        public static bool IsDeluxe(int number)
+        {
+            return number > 10 && number.ToString().Distinct().Count() == 1;
+        }
+
         public static string FizzBuzz(int number)
         {
             bool isFizz = IsFizz(number), isBuzz = IsBuzz(number);
@@ -24,6 +30,13 @@ namespace BeFaster.App.Solutions
                 result = "fizz";
             else if (isBuzz)
                 result = "buzz";
+            if (IsDeluxe(number))
+            {
+                if (!isFizz && !isBuzz)
+                    result = "deluxe";
+                else
+                    result += " deluxe";
+            }
             return result;
         }
     }
