@@ -15,28 +15,43 @@ namespace BeFaster.App.Solutions
             return number % 5 == 0 || number.ToString().Contains("5");
         }
 
-        public static bool IsDeluxe(int number)
+        public static bool IsFizzDeluxe(int number)
         {
-            return number > 10 && number.ToString().Distinct().Count() == 1;
+            return number % 3 == 0 && number.ToString().Contains("3");
+        }
+
+        public static bool IsBuzzDeluxe(int number)
+        {
+            return number % 5 == 0 && number.ToString().Contains("5");
         }
 
         public static string FizzBuzz(int number)
         {
-            bool isFizz = IsFizz(number), isBuzz = IsBuzz(number);
+            bool isFizz = IsFizz(number), isBuzz = IsBuzz(number), isFizzDeluxe = IsFizzDeluxe(number), isBuzzDeluxe = IsBuzzDeluxe(number);
             var result = number.ToString();
             if (isFizz && isBuzz)
-                result = "fizz buzz";
-            else if (isFizz)
-                result = "fizz";
-            else if (isBuzz)
-                result = "buzz";
-            if (IsDeluxe(number))
             {
-                string deluxeType = number % 2 == 0 ? "deluxe" : "fake deluxe";
-                if (!isFizz && !isBuzz)
-                    result = deluxeType;
-                else
-                    result += (" " + deluxeType);
+                result = "fizz buzz";
+                if (isFizzDeluxe && isBuzzDeluxe)
+                {
+                    result += " " + (number % 2 == 0 ? "deluxe" : "fake deluxe");
+                }
+            }
+            else if (isFizz)
+            {
+                result = "fizz";
+                if (isFizzDeluxe)
+                {
+                    result += " " + (number % 2 == 0 ? "deluxe" : "fake deluxe");
+                }
+            }
+            else if (isBuzz)
+            {
+                result = "buzz";
+                if (isBuzzDeluxe)
+                {
+                    result += " " + (number % 2 == 0 ? "deluxe" : "fake deluxe");
+                }
             }
             return result;
         }
