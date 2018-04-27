@@ -32,10 +32,11 @@ namespace BeFaster.App.Solutions
                 result = "buzz";
             if (IsDeluxe(number))
             {
+                string deluxeType = number % 2 == 0 ? "deluxe" : "fake deluxe";
                 if (!isFizz && !isBuzz)
-                    result = "deluxe";
+                    result = deluxeType;
                 else
-                    result += " deluxe";
+                    result += (" " + deluxeType);
             }
             return result;
         }
